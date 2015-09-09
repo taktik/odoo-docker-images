@@ -5,4 +5,4 @@ See [our ubuntu commons scripts](https://github.com/taktik/odoo-docker-commons/t
 
 ## Build
 
-    docker build https://github.com/taktik/odoo-docker.git#:ubuntu -t docker.taktik.be/odoo/ubuntu
+    docker build -t docker.taktik.be/odoo/ubuntu https://github.com/taktik/odoo-docker.git#:ubuntu
