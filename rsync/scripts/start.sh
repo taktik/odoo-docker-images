@@ -4,6 +4,14 @@ source /start_persist_env_vars.sh
 RSYNC_MINUTE=${RSYNC_MINUTE:-20}
 RSYNC_HOUR=${RSYNC_HOUR:-*/3}
 
+if [ ! -f "/keys/id_rsa_rsync" ]; then
+    echo "You should mount a private key in /keys/id_rsa_rsync"
+    echo "and allow it in the rsync_host container via the authorized_keys"
+    exit 1
+fi
+
+chmod 600 /keys/id_rsa_rsync
+
 echo "Starting rsync" >> /var/log/rsync.log
 /rsync.sh
 
