@@ -1,0 +1,21 @@
+/var/log/rsync.log {
+	daily
+	rotate 7
+	compress
+	delaycompress
+	missingok
+	notifempty
+	size 20M
+	create 644 root root
+}
+
+/var/log/rsync.err {
+        daily
+        rotate 7
+        compress
+        delaycompress
+        missingok
+        notifempty
+        size 20M
+        create 644 root root
+}
