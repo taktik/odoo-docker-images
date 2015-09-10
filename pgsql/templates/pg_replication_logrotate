@@ -1,0 +1,11 @@
+/var/log/pg_replication.log {
+    daily
+    rotate 7
+    size 100M
+    dateext
+    dateformat -%Y-%m-%d
+    missingok
+    compress
+    sharedscripts
+    endscript
+}
