@@ -11,4 +11,4 @@ cd /build
 source rsync.sh
 
 # Clean Ubuntu temporary files
-source /commons/ubuntu/cleanup.sh
+curl -s https://raw.githubusercontent.com/taktik/odoo-docker/master/ubuntu/cleanup.sh | sh

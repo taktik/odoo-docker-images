@@ -19,4 +19,4 @@ source /commons/etcd/setup.sh
 source /build/custom.sh
 
 # Clean Ubuntu temporary files
-source /commons/ubuntu/cleanup.sh
+source /build/cleanup.sh
