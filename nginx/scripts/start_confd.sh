@@ -37,6 +37,7 @@ if [ "$ETCD" != "false" ]; then
 [program:confd]
 command=/usr/local/bin/confd -interval 10 -node $ETCD
 autorestart=true
+startretries=1000000
 stdout_events_enabled=true
 stderr_events_enabled=true
 redirect_stderr=true
