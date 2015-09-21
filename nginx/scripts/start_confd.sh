@@ -31,6 +31,11 @@ if [ "$ETCD" != "false" ]; then
     #    sleep 5
     #done
 
+    until etcdctl --peers $ETCD ls; do
+        echo "[nginx] waiting for confd."
+        sleep 5
+    done
+
     echo "Adding confd to supervisord"
     cat > /etc/supervisor/conf.d/supervisor_confd.conf <<EOF
 
