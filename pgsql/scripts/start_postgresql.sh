@@ -22,7 +22,7 @@ if [ ! "$(ls -A /var/lib/postgresql/9.3/main)" ]; then
     # Create openerp database
     su postgres -c "/usr/lib/postgresql/9.3/bin/postgres --single -c config-file=/etc/postgresql/9.3/main/postgresql.conf <<< 'CREATE DATABASE openerp WITH OWNER openerp;'"
     # Create replicator role
-    su postgres -c "/usr/lib/postgresql/9.3/bin/postgres --single -c config-file=/etc/postgresql/9.3/main/postgresql.conf <<< 'CREATE USER replicator REPLICATION LOGIN ENCRYPTED;'"
+    su postgres -c "/usr/lib/postgresql/9.3/bin/postgres --single -c config-file=/etc/postgresql/9.3/main/postgresql.conf <<< 'CREATE USER replicator REPLICATION LOGIN;'"
     # Create collectd role
     su postgres -c "/usr/lib/postgresql/9.3/bin/postgres --single -c config-file=/etc/postgresql/9.3/main/postgresql.conf <<< 'CREATE USER collectd WITH NOCREATEDB NOCREATEUSER;'"
     su postgres -c "/usr/lib/postgresql/9.3/bin/postgres --single -c config-file=/etc/postgresql/9.3/main/postgresql.conf <<< 'ALTER USER collectd set default_transaction_read_only = on;'"
@@ -33,7 +33,7 @@ if [ -n "$OPENERP_PGSQL_PASSWD" ] && [ "$OPENERP_PGSQL_PASSWD" != "false" ]; the
     su postgres -c "/usr/lib/postgresql/9.3/bin/postgres --single -c config-file=/etc/postgresql/9.3/main/postgresql.conf <<< 'ALTER ROLE openerp WITH PASSWORD '\''$OPENERP_PGSQL_PASSWD'\'';'"
 fi
 if [ -n "$REPLICATOR_PGSQL_PASSWD" ] && [ "$REPLICATOR_PGSQL_PASSWD" != "false" ]; then
-    su postgres -c "/usr/lib/postgresql/9.3/bin/postgres --single -c config-file=/etc/postgresql/9.3/main/postgresql.conf <<< 'ALTER ROLE replicator WITH PASSWORD '\''$REPLICATOR_PGSQL_PASSWD'\'';'"
+    su postgres -c "/usr/lib/postgresql/9.3/bin/postgres --single -c config-file=/etc/postgresql/9.3/main/postgresql.conf <<< 'ALTER ROLE replicator WITH ENCRYPTED PASSWORD '\''$REPLICATOR_PGSQL_PASSWD'\'';'"
 fi
 
 # Hot standby (or slave) configuration
