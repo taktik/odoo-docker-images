@@ -11,6 +11,8 @@ if ( set -o noclobber; echo "$$" > "$lockfile" ) 2> /dev/null; then
         RSYNC_FROM_PORT=${RSYNC_FROM_PORT:-22}
         RSYNC_BWLIMIT=${RSYNC_BWLIMIT:-0} # Bandwidth limit, 0 means no limit
         DAYS_TO_KEEP=${DAYS_TO_KEEP:-30}
+        DAYS_TO_KEEP_WEEKLY=${DAYS_TO_KEEP_WEEKLY:-90}
+        DAYS_TO_KEEP_MONTHLY=${DAYS_TO_KEEP_MONTHLY:-365}
         if [ -z "$RSYNC_FROM" ] || [ "$RSYNC_FROM" == "false" ];then
             >&2 echo "[`date -u +'%Y-%m-%dT%H:%M:%SZ'`][error] \"Variable RSYNC_FROM is not set, cannot rsync\""
             exit 1
@@ -18,6 +20,8 @@ if ( set -o noclobber; echo "$$" > "$lockfile" ) 2> /dev/null; then
 
         rsync -a --out-format='%t %b %f' --bwlimit="$RSYNC_BWLIMIT" --files-from=<(ssh -p $RSYNC_FROM_PORT $RSYNC_FROM "find $RSYNC_FROM_DIR -type f -name \"$RSYNC_PATTERN\" -mtime -$DAYS_TO_KEEP | sed -e \"s@^$RSYNC_FROM_DIR@@g\";") --rsh="ssh -p$RSYNC_FROM_PORT" "$RSYNC_FROM:$RSYNC_FROM_DIR" /sync/
         find /sync/ -mtime +$DAYS_TO_KEEP -name "$RSYNC_PATTERN" ! -name "*-monthly.*" ! -name "*-weekly.*" -exec rm -rf '{}' ';'
+        find /sync/ -mtime +$DAYS_TO_KEEP_WEEKLY -name "$RSYNC_PATTERN" -name "*-weekly.*" -exec rm -rf '{}' ';'
+        find /sync/ -mtime +$DAYS_TO_KEEP_MONTHLY -name "$RSYNC_PATTERN" -name "*-monthly.*" -exec rm -rf '{}' ';'
 
         rm -f "$lockfile"
         trap - INT TERM EXIT

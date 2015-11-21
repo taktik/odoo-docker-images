@@ -11,6 +11,8 @@ Let's say we want to store everything on the host in the /data/synced directory:
 
 You can configure some parameters with the following environment variables that you can define when launching the container:
 
+- RSYNC_PATTERN  
+the pattern of the files to be copied. Default is *.dump.
 - RSYNC_FROM  
 the host and directory to rsync the contents from. For instance: root@10.0.2.11:/sync
 - RSYNC_FROM_PORT  
@@ -22,7 +24,11 @@ The minute that will be used in the cron. Default is 0.
 - RSYNC_BWLIMIT  
 set a bandwidth limit (in kb/s).
 - DAYS_TO_KEEP  
-This parameter is a bit specific to our Odoo deployments.  
+The number of days to keep the copied files. Default is 30.
+- DAYS_TO_KEEP_WEEKLY  
+The number of days to keep "weekly" copied files (-weekly in the name). Default is 90.
+- DAYS_TO_KEEP_MONTHLY
+The number of days to keep "monthly" copied files (-monthly in the name). Default is 365.
 The number of days to keep the .dump files (that are not weekly nor monthly). Default is 30.
 - SUMMARY_MAIL_TO  
 If set, a summary mail will be sent every day to the address(es) specified.  
