@@ -10,6 +10,7 @@ if [ ! -f "/keys/id_rsa_rsync" ]; then
     exit 1
 fi
 
+chown root: /keys/id_rsa_rsync
 chmod 600 /keys/id_rsa_rsync
 
 echo "Starting rsync" >> /var/log/rsync.log

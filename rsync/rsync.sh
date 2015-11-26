@@ -6,6 +6,7 @@ cp /build/scripts/start.sh /
 cp /build/scripts/start_persist_env_vars.sh /
 cp /build/scripts/rsync.sh /
 cp /build/scripts/summary_mail.sh /
+chmod +x /*.sh
 
 mkdir -p /keys/
 mkdir -p /root/.ssh
