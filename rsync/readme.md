@@ -30,11 +30,6 @@ The number of days to keep "weekly" copied files (-weekly in the name). Default 
 - DAYS_TO_KEEP_MONTHLY
 The number of days to keep "monthly" copied files (-monthly in the name). Default is 365.
 The number of days to keep the .dump files (that are not weekly nor monthly). Default is 30.
-- SUMMARY_MAIL_TO  
-If set, a summary mail will be sent every day to the address(es) specified.  
-You can specify multiple addresses by separating them with a comma (or a semicolon).
-- SUMMARY_MAIL_HOUR  
-If SUMMARY_MAIL_TO is set, you can also specify the hour at which the mail will be sent.
 
 ## RSA Keys
 
@@ -43,4 +38,3 @@ In order to be able to connect to the rsync_host container, you can mount a key 
 ## Logstash-forwarder
 
 To activate logstash-forwarder, the configuration file must be present at /etc/logstash-forwarder.conf (see [logstash-forwarder documentation](https://github.com/taktik/odoo-docker-commons/tree/master/logstash_forwarder)).
-

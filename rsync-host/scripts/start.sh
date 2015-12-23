@@ -6,4 +6,4 @@ if [ -f /root/.ssh/authorized_keys ]; then
 fi
 
 # start all the services
-exec /usr/local/bin/supervisord -n
+exec /usr/bin/supervisord -n

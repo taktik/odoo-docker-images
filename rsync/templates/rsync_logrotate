@@ -1,4 +1,4 @@
-/var/log/rsync.log {
+/var/log/rsync/rsync.log {
 	daily
 	rotate 7
 	compress
@@ -9,7 +9,7 @@
 	create 644 root root
 }
 
-/var/log/rsync.err {
+/var/log/rsync/error.log {
         daily
         rotate 7
         compress

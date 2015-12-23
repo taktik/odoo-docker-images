@@ -11,24 +11,12 @@ if [ -n "$RSYNC" ]; then
     done <<< "$RSYNC"
 fi
 
-# SMTP variables
-SMTP=$(printenv | grep -i "SMTP");
-if [ -n "$SMTP" ]; then
-    while read -r line; do
-        echo "export $line" >> /root/.profile
-    done <<< "$SMTP"
-fi
-
 export DAYS_TO_KEEP=${DAYS_TO_KEEP:-30}
 export DAYS_TO_KEEP_WEEKLY=${DAYS_TO_KEEP_WEEKLY:-90}
 export DAYS_TO_KEEP_MONTHLY=${DAYS_TO_KEEP_MONTHLY:-365}
-export SUMMARY_MAIL_TO=${SUMMARY_MAIL_TO:-false}
-export SUMMARY_MAIL_HOUR=${SUMMARY_MAIL_HOUR:-7}
 echo "export DAYS_TO_KEEP=$DAYS_TO_KEEP" >> /root/.profile
 echo "export DAYS_TO_KEEP_WEEKLY=$DAYS_TO_KEEP_WEEKLY" >> /root/.profile
 echo "export DAYS_TO_KEEP_MONTHLY=$DAYS_TO_KEEP_MONTHLY" >> /root/.profile
-echo "export SUMMARY_MAIL_TO=$SUMMARY_MAIL_TO" >> /root/.profile
-echo "export SUMMARY_MAIL_HOUR=$SUMMARY_MAIL_HOUR" >> /root/.profile
 
 echo "export TERM=xterm" >> /root/.profile
 
