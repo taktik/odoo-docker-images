@@ -1,0 +1,46 @@
+filebeat:
+  # List of prospectors to fetch data.
+  prospectors:
+    # Each - is a prospector. Below are the prospector specific configurations
+    -
+      paths:
+        - "/var/log/nginx/access.log"
+      document_type: nginx-access
+      ignore_older: 48h
+
+      # Additional fields
+      fields_under_root: true
+      fields:
+        server: your.server
+
+output:
+  logstash:
+    enabled: true
+    hosts: ["yourserver:yourport"]
+
+    # index configures '@metadata.beat' field to be used by Logstash for
+    # indexing. The default index name depends on the each beat.
+    # For Packetbeat, the default is set to packetbeat, for Topbeat to
+    # topbeat and for Filebeat to filebeat.
+    # index: filebeat
+
+    tls:
+      certificate: /etc/pki/tls/certs/logstash-forwarder.crt
+      certificate_key: /etc/pki/tls/certs/logstash-forwarder.key
+      certificate_authorities:
+        - /etc/pki/tls/certs/logstash-forwarder.crt
+      timeout: 15
+
+logging:
+  level: info
+
+  # enable file rotation with default configuration
+  to_files: true
+
+  # do not log to syslog
+  to_syslog: false
+
+  files:
+    path: /var/log/filebeat
+    name: filebeat.log
+    keepfiles: 7

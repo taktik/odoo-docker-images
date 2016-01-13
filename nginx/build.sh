@@ -6,6 +6,9 @@ set -e
 cp /build/scripts/start.sh /
 cp /build/scripts/start_confd.sh /
 cp /build/scripts/test_confd.sh /
+cp /build/scripts/start_filebeat.sh /
+cp /build/scripts/filebeat /usr/local/bin/
+chmod +x /usr/local/bin/filebeat
 chmod +x /*.sh
 
 mkdir -p /var/log/supervisor
@@ -16,7 +19,7 @@ mkdir -p /etc/ssl
 mkdir -p /etc/supervisor.d/
 mkdir -p /etc/nginx
 
-cp /build/templates/supervisor_nginx.ini /etc/supervisor.d/
+cp /build/templates/supervisor_*.ini /etc/supervisor.d/
 
 apk add --update bash build-base ca-certificates openssl openssl-dev tar gzip pcre-dev zlib-dev wget curl
 
