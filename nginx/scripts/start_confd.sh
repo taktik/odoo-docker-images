@@ -37,7 +37,7 @@ if [ "$ETCD" != "false" ]; then
     done
 
     echo "Adding confd to supervisord"
-    cat > /etc/supervisor/conf.d/supervisor_confd.conf <<EOF
+    cat > /etc/supervisor.d/supervisor_confd.ini <<EOF
 
 [program:confd]
 command=/usr/local/bin/confd -interval 10 -node $ETCD
