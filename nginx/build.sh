@@ -38,7 +38,7 @@ chmod +x /usr/local/bin/etcd*
 
 # Nginx
 # Inspired by https://github.com/connexio-labs/docker-alpine-nginx-dynamic/blob/master/Dockerfile
-export NGINX_VERSION="nginx-1.8.0"
+export NGINX_VERSION="nginx-1.10.3"
 apk --update add openssl-dev pcre-dev zlib-dev wget build-base
 mkdir -p /tmp/src
 cd /tmp/src
